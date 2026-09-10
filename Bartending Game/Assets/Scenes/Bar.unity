@@ -718,6 +718,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b3f6ac7213838a49938b709871eb56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 845798596}
+  walkSpeed: 20
 --- !u!1 &1530698753
 GameObject:
   m_ObjectHideFlags: 0
