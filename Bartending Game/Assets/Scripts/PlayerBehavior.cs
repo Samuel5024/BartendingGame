@@ -9,14 +9,19 @@ public class PlayerBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-    }
-
-    public void FixedUpdate()
-    {
         if(Input.GetKeyDown(KeyCode.W))
         {
             rb.AddForce(walkSpeed * Time.deltaTime, 0, 0);
         }
+
+        else
+        {
+            Debug.Log("nothing is being pressed");
+        }
+    }
+
+    public void FixedUpdate()
+    {
+        
     }
 }
