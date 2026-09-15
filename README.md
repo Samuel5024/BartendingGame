@@ -1,5 +1,5 @@
 # BartendingGame  
-***New Additions:***
+***New Additions:***  
 -Mouse-controlled camera movement  
 -WASD movement  
 -Custom cursor UI    
