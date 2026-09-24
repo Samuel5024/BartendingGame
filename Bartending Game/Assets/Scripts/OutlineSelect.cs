@@ -11,6 +11,7 @@ public class OutlineSelect : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        Debug.Log("Mouse Entered: " + gameObject.name);
         if(outlineComp == null)
         {
             outlineComp = GetComponent<Outline>();
