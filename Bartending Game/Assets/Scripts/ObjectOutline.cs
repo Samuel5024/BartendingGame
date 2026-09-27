@@ -11,6 +11,7 @@ public class ObjectOutline : MonoBehaviour
         {
             Outline outline = obj.AddComponent<Outline>();
             outline.enabled = false;
+            outline.OutlineMode = Outline.Mode.OutlineAll;
             outline.OutlineColor = new Color (1f, 1f, 1f);
             outline.OutlineWidth = 4f;
             
