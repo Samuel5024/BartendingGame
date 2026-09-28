@@ -4,11 +4,12 @@ public class PlayerInteraction : MonoBehaviour
 {
     public float playerReach = 3f;
     Interactable currentInteractable;
+    PlayerPickUpDrop grabbedObject;
 
     void Update()
     {
         CheckInteraction();
-        if(Input.GetKeyDown(KeyCode.F) && currentInteractable != null)
+        if(Input.GetKeyDown(KeyCode.F) && currentInteractable != null && grabbedObject.objectGrabbable != null)
         {
             currentInteractable.Interact();
         }
@@ -52,10 +53,12 @@ public class PlayerInteraction : MonoBehaviour
     {
         currentInteractable = newInteractable;
         currentInteractable.EnableOutline();
+        HUDController.instance.EnableInteractionText(currentInteractable.message);
     }
 
     void DisableCurrentInteractable()
     {
+        HUDController.instance.DisableInteractionText();
         if(currentInteractable)
         {
             currentInteractable.DisableOutline();
