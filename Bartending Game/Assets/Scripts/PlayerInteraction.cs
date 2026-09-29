@@ -36,15 +36,16 @@ public class PlayerInteraction : MonoBehaviour
             {
                 if(heldInteractable != currentInteractable || !isTrackingHeldObject) // If brand new object, set it up
                 {
-                    if(currentInteractable != null)
+                    if(currentInteractable = null) // Moved the "else" return condition to inside the inverted if statement
                     {
-                        currentInteractable.DisableOutline();
+                        return;
                     }
+                    
+                    currentInteractable.DisableOutline();
                     isTrackingHeldObject = true; // Lock into held UI state
                     string fullText = heldInteractable.heldMessage + " (F)"; // display the heldMessage
                     SetNewCurrentInteractable(heldInteractable, fullText);
-                }
-                return;            
+                }            
             }
         }
 
@@ -62,16 +63,15 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     if(groundInteractable != currentInteractable || isTrackingHeldObject) // Reset state if it's a new target or if we're holding something
                     {
-                        if(currentInteractable != null)
+                        if(currentInteractable = null)
                         {
-                            currentInteractable.DisableOutline();
+                            return; // Only exit if a valid active component exists!
                         }
-
+                        currentInteractable.DisableOutline();
                         isTrackingHeldObject = false; // Set to ground UI state
                         string fullText = groundInteractable.groundMessage + " (LMB)";
                         SetNewCurrentInteractable(groundInteractable, fullText);
                     }
-                    return; // Only exit if a valid active component exists!
                 }
             }
         }        
