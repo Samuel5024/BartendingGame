@@ -905,6 +905,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionText: {fileID: 1481872179}
+--- !u!114 &1307018703 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8928896367575117214, guid: d2870e5cbad2d1544ab1a8dafaed230d, type: 3}
+  m_PrefabInstance: {fileID: 5901071926514571049}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afff83a6b8d11684e8ddf0d0543ca373, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1481872177
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,7 +933,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1481872178
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1233,17 +1244,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4575779627014568180, guid: 6d4fa96a6b0a7ee4a8c543e4597d7664, type: 3}
   m_PrefabInstance: {fileID: 757395815101306322}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1661644322 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5580645534805534644, guid: 6d4fa96a6b0a7ee4a8c543e4597d7664, type: 3}
-  m_PrefabInstance: {fileID: 757395815101306322}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bd43d514c45a5b458d1d51cbe2ca14f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1783158446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1525,6 +1525,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8074289827814058427, guid: d2870e5cbad2d1544ab1a8dafaed230d, type: 3}
+      propertyPath: pickUpDrop
+      value: 
+      objectReference: {fileID: 1307018703}
     - target: {fileID: 5421690887533217905, guid: d2870e5cbad2d1544ab1a8dafaed230d, type: 3}
       propertyPath: m_Name
       value: First Person Player
@@ -1544,7 +1548,7 @@ PrefabInstance:
     - target: {fileID: 8928896367575117214, guid: d2870e5cbad2d1544ab1a8dafaed230d, type: 3}
       propertyPath: objectGrabbable
       value: 
-      objectReference: {fileID: 1661644322}
+      objectReference: {fileID: 0}
     - target: {fileID: 9150541599577282291, guid: d2870e5cbad2d1544ab1a8dafaed230d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

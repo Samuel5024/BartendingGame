@@ -55,18 +55,22 @@ public class PlayerInteraction : MonoBehaviour
             {
                 Interactable groundInteractable = hit.collider.GetComponent<Interactable>();
 
-                if(groundInteractable && groundInteractable != currentInteractable.enabled)
+                if(groundInteractable != null) // Check if the component exists FIRST before checking if it's enabled
                 {
-                    if(groundInteractable != currentInteractable)
+                    if(groundInteractable.enabled)
                     {
-                        if(currentInteractable != null)
+                        if(groundInteractable != currentInteractable)
                         {
-                            currentInteractable.DisableOutline();
+                            if(currentInteractable != null)
+                            {
+                                currentInteractable.DisableOutline();
+                            }
+
+                            string fullText = groundInteractable.groundMessage + " (LMB)";
+                            SetNewCurrentInteractable(groundInteractable, fullText);
                         }
-                        string fullText = groundInteractable.groundMessage + " (LMB)";
-                        SetNewCurrentInteractable(groundInteractable, fullText);
                     }
-                    return;
+                    return; // Exit, we found a valid object on the ground
                 }
             }
         }        
