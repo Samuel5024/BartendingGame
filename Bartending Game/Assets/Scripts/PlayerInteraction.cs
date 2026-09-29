@@ -2,51 +2,48 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    public float playerReach = 3f;
-    Interactable currentInteractable;
-    PlayerPickUpDrop grabbedObject;
+    [SerializeField]PlayerPickUpDrop pickUpDrop;
+    private Interactable currentInteractable;
 
+    void Start()
+    {
+        if(pickUpDrop == null)
+        {
+            pickUpDrop = GetComponent<PlayerPickUpDrop>();
+        }
+    }
+ 
     void Update()
     {
         CheckInteraction();
-        if(Input.GetKeyDown(KeyCode.F) && currentInteractable != null && grabbedObject.objectGrabbable != null)
+        if(Input.GetKeyDown(KeyCode.F) && currentInteractable != null) 
         {
             currentInteractable.Interact();
+            pickUpDrop.objectGrabbable = null; // Clear reference since object despawns on Interact
+            DisableCurrentInteractable();
         }
     }
 
     void CheckInteraction()
     {
-        RaycastHit hit;
-        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-        
-        if(Physics.Raycast(ray, out hit, playerReach)) // If collides with anything within player reach
+        if(pickUpDrop != null && pickUpDrop.objectGrabbable != null) // Are we holding an object?
         {
-            if(hit.collider.tag == "Interactable") // If looking at an interactable object
+            Interactable heldInteractable = pickUpDrop.objectGrabbable.GetComponent<Interactable>(); // Get Interactable component from held object
+
+            if(heldInteractable != null && heldInteractable.enabled)
             {
-                Interactable newInteractable = hit.collider.GetComponent<Interactable>();
-                if(currentInteractable && newInteractable != currentInteractable) // If there is a currentInteractable & is not the newInteractable
+                if(heldInteractable != currentInteractable) // If brand new object, set it up
                 {
-                    currentInteractable.DisableOutline();
+                    if(currentInteractable != null)
+                    {
+                        currentInteractable.DisableOutline();
+                    }
+                    SetNewCurrentInteractable(heldInteractable);
                 }
-                if(newInteractable.enabled)
-                {
-                    SetNewCurrentInteractable(newInteractable);
-                }
-                else // If new interactable is not valid
-                {
-                    DisableCurrentInteractable();
-                }
-            }
-            else // If not an interactable
-            {
-                DisableCurrentInteractable();
+                return;            
             }
         }
-        else // If nothing in reach
-        {
-            DisableCurrentInteractable();
-        }
+        DisableCurrentInteractable(); // Disable outlines if we aren't holding an interactable object
     }
 
     void SetNewCurrentInteractable(Interactable newInteractable)

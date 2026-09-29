@@ -11,6 +11,11 @@ public class HUDController : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        DisableInteractionText();
+    }
+
     public void EnableInteractionText(string text)
     {
         interactionText.text = text + " (LMB)";
