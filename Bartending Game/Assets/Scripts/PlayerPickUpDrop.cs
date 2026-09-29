@@ -6,7 +6,7 @@ public class PlayerPickUpDrop : MonoBehaviour
     [SerializeField] private Transform objectGrabPointTransform;
     [SerializeField] private LayerMask pickUpLayerMask;
 
-    private ObjectGrabbable objectGrabbable;
+    public ObjectGrabbable objectGrabbable;
 
     private void Update()
     {
