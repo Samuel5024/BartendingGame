@@ -36,7 +36,7 @@ public class PlayerInteraction : MonoBehaviour
             {
                 if(heldInteractable != currentInteractable || !isTrackingHeldObject) // If brand new object, set it up
                 {
-                    if(currentInteractable = null) // Moved the "else" return condition to inside the inverted if statement
+                    if(currentInteractable == null) // Moved the "else" return condition to inside the inverted if statement
                     {
                         return;
                     }
@@ -63,7 +63,7 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     if(groundInteractable != currentInteractable || isTrackingHeldObject) // Reset state if it's a new target or if we're holding something
                     {
-                        if(currentInteractable = null)
+                        if(currentInteractable == null)
                         {
                             return; // Only exit if a valid active component exists!
                         }
