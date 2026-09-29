@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 5086713543557776234}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.534}
+  m_LocalPosition: {x: 0.51, y: -0.099, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -124,6 +124,7 @@ MonoBehaviour:
   pickUpLayerMask:
     serializedVersion: 2
     m_Bits: 55
+  objectGrabbable: {fileID: 0}
 --- !u!114 &-8074289827814058427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dbc19c8f949b3b4b898022c6f242ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickUpDrop: {fileID: 8928896367575117214}
+  playerReach: 3
 --- !u!1 &6853657583807929438
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c6a601412d057245873ef2b581cb257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 500
+  mouseSensitivity: 200
   playerBody: {fileID: 9150541599577282291}
 --- !u!1 &7236104544829760632
 GameObject:
