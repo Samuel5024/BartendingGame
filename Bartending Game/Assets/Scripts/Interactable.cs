@@ -4,7 +4,8 @@ using UnityEngine.Events;
 public class Interactable : MonoBehaviour
 {
     Outline outline;
-    public string message;
+    public string groundMessage = "Pick up";
+    public string heldMessage = "Interact";
     public UnityEvent onInteraction;
 
     void Start()
@@ -20,12 +21,18 @@ public class Interactable : MonoBehaviour
 
     public void DisableOutline()
     {
-        outline.enabled = false;
+        if(outline != null)
+        {
+            outline.enabled = false;
+        }
     }
 
     public void EnableOutline()
     {
-        outline.enabled = true;
+        if(outline != null)
+        {
+            outline.enabled = true;
+        }
     }
 
 

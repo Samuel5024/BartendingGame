@@ -18,7 +18,11 @@ public class HUDController : MonoBehaviour
 
     public void EnableInteractionText(string text)
     {
-        interactionText.text = text + " (LMB)";
+        if(interactionText == null)
+        {
+            return;
+        }
+        interactionText.text = text;
         interactionText.gameObject.SetActive(true);
     }
 
