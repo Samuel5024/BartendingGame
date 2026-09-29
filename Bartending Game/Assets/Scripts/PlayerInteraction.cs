@@ -3,8 +3,9 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] PlayerPickUpDrop pickUpDrop;
-    private Interactable currentInteractable;
     public float playerReach = 3f;
+    private Interactable currentInteractable;
+    private bool isTrackingHeldObject = false; // state tracker that forces UI changes when switching from floor to hand
 
     void Start()
     {
@@ -33,12 +34,13 @@ public class PlayerInteraction : MonoBehaviour
 
             if(heldInteractable != null && heldInteractable.enabled)
             {
-                if(heldInteractable != currentInteractable) // If brand new object, set it up
+                if(heldInteractable != currentInteractable || !isTrackingHeldObject) // If brand new object, set it up
                 {
                     if(currentInteractable != null)
                     {
                         currentInteractable.DisableOutline();
                     }
+                    isTrackingHeldObject = true; // Lock into held UI state
                     string fullText = heldInteractable.heldMessage + " (F)"; // display the heldMessage
                     SetNewCurrentInteractable(heldInteractable, fullText);
                 }
@@ -46,35 +48,34 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
 
+        // Case 2: Empty hands & looking for a ground object
         RaycastHit hit;
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         
         if(Physics.Raycast(ray, out hit, playerReach))
         {
-            if(hit.collider.tag == "Interactable") // If looking at an interactable object
+            if(hit.collider.CompareTag("Interactable"))
             {
                 Interactable groundInteractable = hit.collider.GetComponent<Interactable>();
 
-                if(groundInteractable != null) // Check if the component exists FIRST before checking if it's enabled
+                if(groundInteractable != null && groundInteractable.enabled) 
                 {
-                    if(groundInteractable.enabled)
+                    if(groundInteractable != currentInteractable || isTrackingHeldObject) // Reset state if it's a new target or if we're holding something
                     {
-                        if(groundInteractable != currentInteractable)
+                        if(currentInteractable != null)
                         {
-                            if(currentInteractable != null)
-                            {
-                                currentInteractable.DisableOutline();
-                            }
-
-                            string fullText = groundInteractable.groundMessage + " (LMB)";
-                            SetNewCurrentInteractable(groundInteractable, fullText);
+                            currentInteractable.DisableOutline();
                         }
+
+                        isTrackingHeldObject = false; // Set to ground UI state
+                        string fullText = groundInteractable.groundMessage + " (LMB)";
+                        SetNewCurrentInteractable(groundInteractable, fullText);
                     }
-                    return; // Exit, we found a valid object on the ground
+                    return; // Only exit if a valid active component exists!
                 }
             }
         }        
-        DisableCurrentInteractable(); // Disable outlines if we aren't holding an interactable object
+        DisableCurrentInteractable(); // Now safely disables outlines/UI if you look away or hit a bad object
     }
 
     void SetNewCurrentInteractable(Interactable newInteractable, string formattedText)
@@ -86,7 +87,10 @@ public class PlayerInteraction : MonoBehaviour
 
     void DisableCurrentInteractable()
     {
-        HUDController.instance.DisableInteractionText();
+        if(HUDController.instance != null)
+        {
+            HUDController.instance.DisableInteractionText();
+        }
         if(currentInteractable)
         {
             currentInteractable.DisableOutline();

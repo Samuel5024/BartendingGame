@@ -1529,6 +1529,10 @@ PrefabInstance:
       propertyPath: pickUpDrop
       value: 
       objectReference: {fileID: 1307018703}
+    - target: {fileID: 4889077210739298286, guid: d2870e5cbad2d1544ab1a8dafaed230d, type: 3}
+      propertyPath: mouseSensitivity
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 5421690887533217905, guid: d2870e5cbad2d1544ab1a8dafaed230d, type: 3}
       propertyPath: m_Name
       value: First Person Player
