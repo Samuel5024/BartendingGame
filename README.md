@@ -1,8 +1,12 @@
-# BartendingGame  
+# BartendingGame
+
 ***New Additions:***  
--Mouse-controlled camera movement  
--WASD movement  
--Custom cursor UI    
+-White outline on selectable objects
+
+\-UI text instructions appear on selectable objects
+
+\-revamped interaction system
 
 Play Here:  
-https://samuel5024.github.io/BartendingGame/  
+https://samuel5024.github.io/BartendingGame/
+
