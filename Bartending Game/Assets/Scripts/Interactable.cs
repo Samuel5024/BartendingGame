@@ -16,7 +16,7 @@ public class Interactable : MonoBehaviour
 
     public void Interact()
     {
-        onInteraction.Invoke();
+        Debug.Log("test");
     }
 
     public void DisableOutline()

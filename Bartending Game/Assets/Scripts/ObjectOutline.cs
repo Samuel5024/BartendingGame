@@ -15,11 +15,11 @@ public class ObjectOutline : MonoBehaviour
             outline.OutlineColor = new Color (1f, 1f, 1f);
             outline.OutlineWidth = 4f;
             
-            // if(obj.GetComponent<OutlineSelect>() == null)
+            // if (obj.GetComponent<OutlineSelect>() == null)
             // {
             //     obj.AddComponent<OutlineSelect>();
             // }
-            if(obj.GetComponent<BoxCollider>() == null)
+            if (obj.GetComponent<BoxCollider>() == null)
             {
                 obj.AddComponent<BoxCollider>();
             }
