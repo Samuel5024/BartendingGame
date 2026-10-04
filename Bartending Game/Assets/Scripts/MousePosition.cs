@@ -10,7 +10,7 @@ public class MousePosition : MonoBehaviour
     private Rigidbody draggedRigidbody;
     private Vector3 mOffset; // Difference b/w world position of the gameObject & cursor
     private Vector3 targetPhysicsPosition; // Where the object should be with the mouse
-    private float mZCoord; // How far the gameObject is from your screen 
+    public float mZCoord; // How far the gameObject is from your screen 
 
 
     private void Start()
@@ -58,7 +58,12 @@ public class MousePosition : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (dragged)
+        if (draggedRigidbody != null)
+        {
+            Vector3 directionToTarget = targetPhysicsPosition - draggedRigidbody.position;
+            draggedRigidbody.linearVelocity = directionToTarget * dragSpeed;
+            draggedRigidbody.angularVelocity = Vector3.zero;
+        }
     }
 
     private Vector3 GetMouseAsWorldPoint(Camera cam)
@@ -68,11 +73,26 @@ public class MousePosition : MonoBehaviour
         return Camera.main.ScreenToWorldPoint(mousePoint);
     }
 
-    public void StartDragging(Rigidbody rbToDrag)
+    public void StartDragging(Rigidbody draggedRb)
     {
-        draggedRigidbody = rbToDrag;
-        draggedRigidbody.useGravity = false
+        draggedRigidbody = draggedRb;
+        draggedRigidbody.useGravity = false;
         Camera cam = mainCamera != null ? mainCamera : Camera.main;
+
+        mZCoord = cam.WorldToScreenPoint(draggedRb.position).z;
+        mOffset = draggedRb.position - GetMouseAsWorldPoint(cam);
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void StopDragging()
+    {
+        if (draggedRigidbody != null)
+        {
+            draggedRigidbody.useGravity = true;
+            draggedRigidbody = null;
+        }
     }
 
     private void ClearHoveredOutline()
