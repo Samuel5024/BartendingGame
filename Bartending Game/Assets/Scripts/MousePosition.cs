@@ -10,7 +10,7 @@ public class MousePosition : MonoBehaviour
     private Rigidbody draggedRigidbody;
     private Vector3 mOffset; // Difference b/w world position of the gameObject & cursor
     private Vector3 targetPhysicsPosition; // Where the object should be with the mouse
-    public float mZCoord; // How far the gameObject is from your screen 
+    private float mZCoord; // How far the gameObject is from your screen 
 
 
     private void Start()
@@ -34,7 +34,7 @@ public class MousePosition : MonoBehaviour
             return;
         }
 
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit raycastHit))
         {
             transform.position = raycastHit.point;
@@ -70,7 +70,7 @@ public class MousePosition : MonoBehaviour
     {
         Vector3 mousePoint = Input.mousePosition;
         mousePoint.z = mZCoord; // z coordinate of game object on screen
-        return Camera.main.ScreenToWorldPoint(mousePoint);
+        return cam.ScreenToWorldPoint(mousePoint);
     }
 
     public void StartDragging(Rigidbody draggedRb)
