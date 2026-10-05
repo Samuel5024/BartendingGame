@@ -9,7 +9,7 @@ public class PlayerInteraction : MonoBehaviour
 
     void Start()
     {
-        if(pickUpDrop == null)
+        if (pickUpDrop == null)
         {
             pickUpDrop = GetComponent<PlayerPickUpDrop>();
         }
@@ -18,11 +18,17 @@ public class PlayerInteraction : MonoBehaviour
     void Update()
     {
         CheckInteraction();
-        if(Input.GetKeyDown(KeyCode.F) && currentInteractable != null) 
+        // pickUpDrop.objectGrabbable = null; 
+        // DisableCurrentInteractable(); // Deactivated or else we'd drop the object immediately since DisableCurrentInteratable nullifies tracking reference
+
+        if (Input.GetKeyDown(KeyCode.F) && currentInteractable != null) 
         {
             currentInteractable.Interact();
-            pickUpDrop.objectGrabbable = null; // Clear reference since object despawns on Interact
-            DisableCurrentInteractable();
+            
+            if (pickUpDrop != null)
+            {
+                pickUpDrop.objectGrabbable = null;
+            }
         }
     }
 
@@ -31,17 +37,17 @@ public class PlayerInteraction : MonoBehaviour
         //===========================
         // Case 1: Held Object Logic
         //===========================
-        if(pickUpDrop != null && pickUpDrop.objectGrabbable != null)
+        if (pickUpDrop != null && pickUpDrop.objectGrabbable != null)
         {
             Interactable heldInteractable = pickUpDrop.objectGrabbable.GetComponent<Interactable>(); // Get Interactable component from held object
 
-            if(heldInteractable == null && !heldInteractable.enabled)
+            if (heldInteractable == null && !heldInteractable.enabled)
             {
                 return;
             }
-            if(heldInteractable != currentInteractable || !isTrackingHeldObject) // If brand new object, set it up
+            if (heldInteractable != currentInteractable || !isTrackingHeldObject) // If brand new object, set it up
             {
-                if(currentInteractable != null)
+                if (currentInteractable != null)
                 {
                     currentInteractable.DisableOutline();
                 }
@@ -59,20 +65,20 @@ public class PlayerInteraction : MonoBehaviour
         RaycastHit hit;
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         
-        if(Physics.Raycast(ray, out hit, playerReach))
+        if (Physics.Raycast(ray, out hit, playerReach))
         {
-            if(hit.collider.CompareTag("Interactable"))
+            if (hit.collider.CompareTag("Interactable"))
             {
                 Interactable groundInteractable = hit.collider.GetComponent<Interactable>();
 
-                if(groundInteractable == null && !groundInteractable.enabled) 
+                if (groundInteractable == null && !groundInteractable.enabled) 
                 {
                     DisableCurrentInteractable();
                     return;
                 }
-                if(groundInteractable != currentInteractable || isTrackingHeldObject) // Reset state if it's a new target or if we're holding something
+                if (groundInteractable != currentInteractable || isTrackingHeldObject) // Reset state if it's a new target or if we're holding something
                 {
-                    if(currentInteractable != null)
+                    if (currentInteractable != null)
                     {
                         currentInteractable.DisableOutline();
                     }
@@ -99,11 +105,11 @@ public class PlayerInteraction : MonoBehaviour
 
     void DisableCurrentInteractable()
     {
-        if(HUDController.instance != null)
+        if (HUDController.instance != null)
         {
             HUDController.instance.DisableInteractionText();
         }
-        if(currentInteractable)
+        if (currentInteractable)
         {
             currentInteractable.DisableOutline();
             currentInteractable = null;

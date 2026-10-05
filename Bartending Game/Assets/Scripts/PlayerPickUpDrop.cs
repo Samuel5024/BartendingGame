@@ -10,15 +10,15 @@ public class PlayerPickUpDrop : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if(objectGrabbable == null) // Not carrying an object, try to grab
+            if (objectGrabbable == null) // Not carrying an object, try to grab
             {
                 float pickupDistance = 2f;
-                if(Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickupDistance, pickUpLayerMask))
+                if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickupDistance, pickUpLayerMask))
                 {
                     Debug.Log(raycastHit.transform);
-                    if(raycastHit.transform.TryGetComponent(out objectGrabbable))
+                    if (raycastHit.transform.TryGetComponent(out objectGrabbable))
                     {
                         objectGrabbable.Grab(objectGrabPointTransform);
                         Debug.Log(objectGrabbable);

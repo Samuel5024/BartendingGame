@@ -18,7 +18,7 @@ public class HUDController : MonoBehaviour
 
     public void EnableInteractionText(string text)
     {
-        if(interactionText == null)
+        if (interactionText == null)
         {
             return;
         }

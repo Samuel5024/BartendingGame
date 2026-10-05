@@ -16,7 +16,7 @@ public class CursorUI : MonoBehaviour
         _cursorTransform = GetComponent<RectTransform>();
         _parentCanvas = GetComponentInParent<Canvas>();
         
-        if(_parentCanvas != null)
+        if (_parentCanvas != null)
         {
             _canvasRectTransform = _parentCanvas.GetComponent<RectTransform>();
             _canvasCamera = _parentCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : _parentCanvas.worldCamera;
@@ -36,13 +36,13 @@ public class CursorUI : MonoBehaviour
 
     private void OnPointerPositionChanged(InputAction.CallbackContext ctx)
     {
-        if(_cursorTransform == null || _canvasRectTransform == null)
+        if (_cursorTransform == null || _canvasRectTransform == null)
         {
             return;
         }
 
         var mousePosition = ctx.ReadValue<Vector2>();
-        if(RectTransformUtility.ScreenPointToLocalPointInRectangle(_canvasRectTransform, mousePosition, _canvasCamera, out var localPoint))
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_canvasRectTransform, mousePosition, _canvasCamera, out var localPoint))
         {
             _cursorTransform.anchoredPosition = localPoint;
         }

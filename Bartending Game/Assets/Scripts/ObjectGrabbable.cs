@@ -23,7 +23,7 @@ public class ObjectGrabbable : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(objectGrabPointTransform != null)
+        if (objectGrabPointTransform != null)
         {
             objectRigidbody.MovePosition(objectGrabPointTransform.position);
         }

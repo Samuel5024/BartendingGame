@@ -4,19 +4,28 @@ public class MouseLook : MonoBehaviour
 {
 
     public float mouseSensitivity = 300f;
-     
     public Transform playerBody;
-    
     private float xRotation = 0f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private MousePosition mouseTracker;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        mouseTracker = Object.FindFirstObjectByType<MousePosition>();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (mouseTracker == null)
+        {
+            mouseTracker = Object.FindFirstObjectByType<MousePosition>();
+        }
+
+        if(mouseTracker != null && mouseTracker.IsHoldingObject)
+        {
+            return;
+        }
+
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
