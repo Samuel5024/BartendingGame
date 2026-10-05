@@ -23,14 +23,9 @@ public class Interactable : MonoBehaviour
     {
         mouseTracker = Object.FindFirstObjectByType<MousePosition>();
 
-        if (mouseTracker == null)
+        if (mouseTracker == null || rb == null)
         {
             Debug.LogError("MousePosition.cs is missing from the scene!");
-            return;
-        }
-
-        if (rb == null)
-        {
             Debug.LogError($"{gameObject.name} is missing a Rigidbody component!");
             return;
         }
