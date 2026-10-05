@@ -4,13 +4,25 @@ using System.Collections;
 public class MousePosition : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
-    [SerializeField] private float dragSpeed = 15f;
+    [SerializeField] private float dragSpeed = 30f;
 
     private Outline currentHoveredOutline;  // Track the outline component we're currently hovering over 
     private Rigidbody draggedRigidbody;
     private Vector3 mOffset; // Difference b/w world position of the gameObject & cursor
     private Vector3 targetPhysicsPosition; // Where the object should be with the mouse
     private float mZCoord; // How far the gameObject is from your screen 
+    
+    public bool IsHoldingObject => draggedRigidbody != null; 
+    //Extended way to write IsHoldingObject:
+
+
+        // public bool IsHoldingObject
+        // {
+        //     get
+        //     {
+        //         return draggedRigdibody != null;
+        //     }
+        // }
 
 
     private void Start()
@@ -81,8 +93,6 @@ public class MousePosition : MonoBehaviour
 
         mZCoord = cam.WorldToScreenPoint(draggedRb.position).z;
         mOffset = draggedRb.position - GetMouseAsWorldPoint(cam);
-
-        Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
 
