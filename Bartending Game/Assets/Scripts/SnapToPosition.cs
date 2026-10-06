@@ -1,34 +1,35 @@
-using UnityEngine;
+// using UnityEngine;
+// using System.Collections;
+// using System.Collections.Generic;
 
-public class SnapToPosition : MonoBehaviour
-{
-    public Vector3 snapPosition;
-    private Quaternion originalRotationValue;
-    float rotationResetSpeed = 1.0f;
-    public bool canSnap = true;
+// public class SnapToPosition : MonoBehaviour
+// {
+//     public Vector3 snapPosition;
+//     private Quaternion originalRotationValue;
+//     float rotationResetSpeed = 1.0f;
+//     public bool canSnap = true;
     
-    public ObjectGrabbable objectGrabbable;
-    public PlayerPickUpDrop pickUpDrop;
+//     public ObjectGrabbable objectGrabbable;
     
-    private void Start()
-    {
-        snapPosition = this.transform.position;
-        originalRotationValue = transform.rotation;
-    }
+//     private void Start()
+//     {
+//         snapPosition = this.transform.position;
+//         originalRotationValue = transform.rotation;
+//     }
 
 
 
-    private void SnapToStartingPosition()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && objectGrabbable != null && !canSnap) // if we click the LMB, not carrying an object & can't snap
-        {
-            pickUpDrop.Drop();
-        }
-        else
-        {
-            this.transform.position = snapPosition;
-            transform.rotation = Quaternion.Slerp(transform.rotation. originalRotationValue, Time.time * rotationResetSpeed);
-            GetComponent<Rigidbody>().isKinematic = true;
-        }
-    }
-}
+//     private void SnapToStartingPosition()
+//     {
+//         if (Input.GetKeyDown(KeyCode.Mouse0) && objectGrabbable != null && !canSnap) // if we click the LMB, not carrying an object & can't snap
+//         {
+//             objectGrabbable.Drop();
+//         }
+//         else
+//         {
+//             this.transform.position = snapPosition;
+//             transform.rotation = Quaternion.Slerp(transform.rotation.originalRotationValue, Time.time * rotationResetSpeed);
+//             GetComponent<Rigidbody>().isKinematic = true;
+//         }
+//     }
+// }
