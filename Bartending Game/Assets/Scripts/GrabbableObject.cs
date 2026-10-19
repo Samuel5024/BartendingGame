@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GrabbableObject : MonoBehaviour
@@ -12,26 +13,17 @@ public class GrabbableObject : MonoBehaviour
     private bool over = false;
     public Color targetColor = Color.yellow;
     private GameObject MainCam;
+    private Interact interactable;
     public string[] prompts = { " Grab Object", "" };
     private bool touched = false;
     private bool rotating = false;
     private Quaternion rotateBy;
+    private MouseLook[] mouseLook;
     private Vector3 originPos;
     private Quaternion originRot;
     public bool canReturn = true;
     private bool objectReset = true;
     private float distToOrigin;
-
-    /*********************************************
-
-    Still need to write these other scripts:
-
-    private Interact interactable;
-    private MouseLook[] mouseLook;
-
-    Until then, any reference to them is  
-    commented out to avoid compile errors
-    ******************************************/
 
     void Start()
     {
@@ -85,14 +77,104 @@ public class GrabbableObject : MonoBehaviour
     public void RelativeRotate(float rotateLeftRight, float rotateUpDown)
     {
         float sensitivity = 5f;
-        Vector3 relativeUp = MainCam.transform.TransformDirection(Vector3.up); // Gets the world vector space for cameras up vector
-        Vector3 relativeRight = MainCam.transform.TransformDirection(Vector3.right); // Gets the world vector space for cameras right vector
-        Vector3 objectRelativeUp  = transform.position.InverseTransformDirection(relative)
+        Vector3 relativeUp = MainCam.transform.TransformDirection(Vector3.up); //Gets the world vector space for cameras up vector
+        Vector3 relativeRight = MainCam.transform.TransformDirection(Vector3.right); //Gets the world vector space for cameras right vector
+        Vector3 objectRelativeUp = transform.InverseTransformDirection(relativeUp); //Turns relativeUp vector from world to objects local space
+        Vector3 objectRelativeRight = transform.InverseTransformDirection(relativeRight); //Turns relativeRight vector from world to objects local space
+
+        rotateBy = Quaternion.AngleAxis(rotateLeftRight / gameObject.transform.localScale.x * sensitivity, objectRelativeUp)
+            * Quaternion.AngleAxis(-rotateUpDown / gameObject.transform.localScale.x * sensitivity, objectRelativeRight);
     }
-    // Update is called once per frame
+
+    void FixedUpdate()
+    {
+        if (rotating)
+        {
+            gameObject.transform.localRotation *= rotateBy;
+        }
+
+        if (!beingCarried)
+        {
+            if (over)
+            {
+                rend.material.color = Color.Lerp(rend.material.color, targetColor, Time.deltaTime * 4);
+            }
+            else if (!over)
+            {
+                rend.material.color = Color.Lerp(rend.material.color, originColor, Time.deltaTime * 4);
+            }
+        }
+        else
+        {
+            rend.material.color = originColor;
+        }
+
+        if (touched)
+        {
+            rb.isKinematic = false;
+            transform.parent = null;
+            beingCarried = false;
+            rotating = false;
+            for (int i = 0; i < mouseLook.Length; i++)
+            {
+                mouseLook.Length[i].working = true;
+            }
+            touched = false;
+        }
+    }
+
     void Update()
     {
-        
+        if (beingCarried)
+        {
+            if (Input.GetButtonDown("Squint") && !rotating)
+            {
+                for (int i = 0; i < mouseLook.Length; i++)
+                {
+                    mouseLook[i].working = false;
+                }
+                rotating = true;
+            }
+            if (Input.GetButton("Squint"))
+            {
+                RelativeRotate(-Input.GetAxis("Mouse X") * 5, -Input.GetAxis("Mouse Y") * 5);
+            }
+            if(Input.GetButtonUp("Squint") && rotating)
+            {
+                for (int i = 0; i < mouseLook.Length; i++)
+                {
+                    mouseLook[i].working = true;
+                }
+                rotating = false;
+            }
+        }
+        else
+        {
+            if (canReturn)
+            {
+                if (!objectReset)
+                {
+                    distToOrigin = Vector3.Distance(originPos, transform.position);
+                    if (distToOrigin <= .25f)
+                    {
+                        // Disable physics
+                        rb.isKinematic = true;
+                        transform.position = originPos;
+                        transform.rotation = originRot;
+                        rb.isKinematic = false;
+                        objectReset = true;
+                    }
+                }
+            }
+        }    
+    }
+
+    void OnTriggerEnter(Collider coll)
+    {
+        if (!beingCarried)
+        {
+            touched = true;
+        }
     }
 
     private IEnumerator Fadeout()
