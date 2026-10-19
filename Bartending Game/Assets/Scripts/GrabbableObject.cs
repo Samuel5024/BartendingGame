@@ -82,6 +82,13 @@ public class GrabbableObject : MonoBehaviour
         //interactable.CrosshairUI.SetActive(false);
     }
 
+    public void RelativeRotate(float rotateLeftRight, float rotateUpDown)
+    {
+        float sensitivity = 5f;
+        Vector3 relativeUp = MainCam.transform.TransformDirection(Vector3.up); // Gets the world vector space for cameras up vector
+        Vector3 relativeRight = MainCam.transform.TransformDirection(Vector3.right); // Gets the world vector space for cameras right vector
+        Vector3 objectRelativeUp  = transform.position.InverseTransformDirection(relative)
+    }
     // Update is called once per frame
     void Update()
     {
