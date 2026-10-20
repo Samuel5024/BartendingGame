@@ -33,7 +33,7 @@ public class GrabbableObject : MonoBehaviour
         {
             MainCam = GameObject.FindObjectOfType<Camera>().gameObject;
         }
-        //interactable = MainCam.GetComponent<Interact>();
+        interactable = MainCam.GetComponent<Interact>();
         originColor = rend.material.color;
         StartCoroutine(SetOriginTrans());
     }
@@ -44,7 +44,7 @@ public class GrabbableObject : MonoBehaviour
         StartCoroutine(Fadeout());
         if (!beingCarried)
         {
-            //interactable.message = prompts[0];
+            interactable.message = prompts[0];
         }
     }
 
@@ -57,10 +57,10 @@ public class GrabbableObject : MonoBehaviour
             transform.parent = null;
             rb.AddForce(MainCam.transform.forward * throwSpeed);
             rotating = false;
-            //for (int i = 0; i < mouseLook.Length; i++) 
-            //{
-            //    mouseLook[i].working = true;   
-            //}
+            for (int i = 0; i < mouseLook.Length; i++)
+            {
+                mouseLook[i].working = true;
+            }
             touched = false;
         }
         else if (beingCarried)
@@ -70,8 +70,8 @@ public class GrabbableObject : MonoBehaviour
             transform.parent = MainCam.transform;
             objectReset = false;
         }
-        //interactable.message = prompts[1];
-        //interactable.CrosshairUI.SetActive(false);
+        interactable.message = prompts[1];
+        interactable.CrosshairUI.SetActive(false);
     }
 
     public void RelativeRotate(float rotateLeftRight, float rotateUpDown)

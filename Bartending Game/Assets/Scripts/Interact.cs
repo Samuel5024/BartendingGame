@@ -1,16 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Interact : MonoBehaviour
 {
     private Vector3 fwd;
+    [HideInInspector]
     public bool hover = false;
     private bool alreadyHovered = false;
     private bool alreadyHovered2 = false;
     public GameObject InteractionUI;
     public GameObject CrosshairUI;
-    private Text dispText;
+    private Animation anim;
+    private TextMeshProUGUI dispText;
     private float dist = 1000f;
+    [System.NonSerialized]
     public string message = "";
 
     [System.NonSerialized]
@@ -19,7 +23,8 @@ public class Interact : MonoBehaviour
 
     void Start()
     {
-        dispText = InteractionUI.GetComponent<Text>();
+        anim = InteractionUI.GetComponent<Animation>();
+        dispText = InteractionUI.GetComponent<TextMeshProUGUI>();
         dispText.text = "";
     }
 

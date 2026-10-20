@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 5086713543557776234}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.51, y: -0.099, z: 1.5}
+  m_LocalPosition: {x: 0, y: -0.099, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -118,15 +118,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c6a601412d057245873ef2b581cb257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axes: 0
+  axes: 1
   sensitivityX: 3
   sensitivityY: 3
   minimumX: -360
   maximumX: 360
-  minimumY: -85
-  maximumY: 90
-  lockCursor: 1
-  working: 0
+  minimumY: -60
+  maximumY: 60
+  lockCursor: 0
+  working: 1
   cutSceneMode: 0
 --- !u!1 &6853657583807929438
 GameObject:
@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 1421929131222242095}
   - component: {fileID: 2393599110516366038}
   - component: {fileID: 4889077210739298286}
+  - component: {fileID: 2313763322531837591}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -279,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c6a601412d057245873ef2b581cb257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axes: 0
+  axes: 2
   sensitivityX: 3
   sensitivityY: 3
   minimumX: -360
@@ -289,6 +290,21 @@ MonoBehaviour:
   lockCursor: 1
   working: 1
   cutSceneMode: 0
+--- !u!114 &2313763322531837591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6853657583807929438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f3b23964ae005f40a3c2e9c2245d86c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hover: 0
+  InteractionUI: {fileID: 0}
+  CrosshairUI: {fileID: 0}
 --- !u!1 &7236104544829760632
 GameObject:
   m_ObjectHideFlags: 0
