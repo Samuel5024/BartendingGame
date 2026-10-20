@@ -18,7 +18,7 @@ public class GrabbableObject : MonoBehaviour
     private bool touched = false;
     private bool rotating = false;
     private Quaternion rotateBy;
-    private MouseLook[] mouseLook;
+    public MouseLook[] mouseLook;
     private Vector3 originPos;
     private Quaternion originRot;
     public bool canReturn = true;
@@ -117,7 +117,7 @@ public class GrabbableObject : MonoBehaviour
             rotating = false;
             for (int i = 0; i < mouseLook.Length; i++)
             {
-                mouseLook.Length[i].working = true;
+                mouseLook[i].working = true;
             }
             touched = false;
         }
