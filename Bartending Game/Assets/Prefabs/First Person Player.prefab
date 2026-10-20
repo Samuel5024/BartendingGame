@@ -42,8 +42,7 @@ GameObject:
   - component: {fileID: 9150541599577282291}
   - component: {fileID: 5737357606295984538}
   - component: {fileID: 5496984214433840112}
-  - component: {fileID: 8928896367575117214}
-  - component: {fileID: -8074289827814058427}
+  - component: {fileID: 4384305002611638127}
   m_Layer: 0
   m_Name: First Person Player
   m_TagString: Untagged
@@ -107,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 5737357606295984538}
   speed: 12
---- !u!114 &8928896367575117214
+--- !u!114 &4384305002611638127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,29 +115,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 5421690887533217905}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afff83a6b8d11684e8ddf0d0543ca373, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c6a601412d057245873ef2b581cb257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCameraTransform: {fileID: 4950270628416241348}
-  objectGrabPointTransform: {fileID: 7300841817861489160}
-  pickUpLayerMask:
-    serializedVersion: 2
-    m_Bits: 55
-  objectGrabbable: {fileID: 0}
---- !u!114 &-8074289827814058427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5421690887533217905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dbc19c8f949b3b4b898022c6f242ad0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickUpDrop: {fileID: 8928896367575117214}
-  playerReach: 3
+  axes: 0
+  sensitivityX: 3
+  sensitivityY: 3
+  minimumX: -360
+  maximumX: 360
+  minimumY: -85
+  maximumY: 90
+  lockCursor: 1
+  working: 0
+  cutSceneMode: 0
 --- !u!1 &6853657583807929438
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,8 +279,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c6a601412d057245873ef2b581cb257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 200
-  playerBody: {fileID: 9150541599577282291}
+  axes: 0
+  sensitivityX: 3
+  sensitivityY: 3
+  minimumX: -360
+  maximumX: 360
+  minimumY: -85
+  maximumY: 90
+  lockCursor: 1
+  working: 1
+  cutSceneMode: 0
 --- !u!1 &7236104544829760632
 GameObject:
   m_ObjectHideFlags: 0
