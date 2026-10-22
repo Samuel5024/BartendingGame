@@ -11071,13 +11071,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: First Person Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5496984214433840112, guid: d2870e5cbad2d1544ab1a8dafaed230d, type: 3}
+      propertyPath: toggleCrouch
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9150541599577282291, guid: d2870e5cbad2d1544ab1a8dafaed230d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9150541599577282291, guid: d2870e5cbad2d1544ab1a8dafaed230d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.96
+      value: 2.34
       objectReference: {fileID: 0}
     - target: {fileID: 9150541599577282291, guid: d2870e5cbad2d1544ab1a8dafaed230d, type: 3}
       propertyPath: m_LocalPosition.z
