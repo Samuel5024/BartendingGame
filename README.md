@@ -4,10 +4,9 @@ Play Here:
 https://samuel5024.github.io/BartendingGame/  
 
 ***New Additions:***  
-- Revamped Interaction System
-- New UI cursor when hovering over items
-- Item snapping
-- Item color change when hovered over  
+- Start screen added  
+- Press CTRL to crouch  
+- Bottles added to the bar
 
 **Credits:**  
   
