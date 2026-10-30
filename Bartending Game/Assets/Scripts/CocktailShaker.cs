@@ -5,11 +5,11 @@ public class CocktailShaker : MonoBehaviour
 {
     [Header("Input Settings")]
     [SerializeField] private string actionButton = "Fire1";
-    [SerializeField] private float momentSensitivity = 0.15f;
+    [SerializeField] private float movementSensitivity = 0.15f;
     [SerializeField] private float returnSpeed = 8f;
 
     [Header("Gameplay Thresholds")]
-    [SerializeField] private float requiredVelocitythreshold = 4f;
+    [SerializeField] private float requiredVelocityThreshold = 4f;
     [SerializeField] private float targetShakeScore = 100f;
 
     private Vector3 restingLocalPosition;
@@ -52,7 +52,7 @@ public class CocktailShaker : MonoBehaviour
 
         if (isShakingActive)
         {
-            ProcessshakingInput();
+            ProcessShakingInput();
             CalculateShakeVelocity();
         }
         else
@@ -86,7 +86,7 @@ public class CocktailShaker : MonoBehaviour
         float moveX = Input.GetAxis("Mouse X") + Input.GetAxis("Horizontal");
         float moveY = Input.GetAxis("Mouse Y") + Input.GetAxis("Vertical");
 
-        Vector3 targetOffset = new Vector3(moveX, moveY, of) * movementSensitivity;
+        Vector3 targetOffset = new Vector3(moveX, moveY, 0f) * movementSensitivity;
 
         // Apply spatial movement relative to the grab point child coordinate space
         transform.localPosition = Vector3.Lerp(transform.localPosition, restingLocalPosition + targetOffset, Time.deltaTime * 25f);
@@ -121,9 +121,17 @@ public class CocktailShaker : MonoBehaviour
         isShakingActive = false;
         if (playerMouseLook != null)
         {
-            playerMouseLook.working = true;
+            playerMouseLook.working = true; // Safely restore camera controls
         }
     }
 
-    
+    private void OnDrinkFinishedShaking()
+    {
+        Debug.Log("Drink is ready!");
+        ForceStopShaking();
+        currentShakeScore = 0f;
+        // Additional logic for when the drink is finished can be added here
+    }
+
+
 }
