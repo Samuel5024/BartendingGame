@@ -12,19 +12,32 @@ public class CocktailShaker : MonoBehaviour
     [SerializeField] private float requiredVelocityThreshold = 4f;
     [SerializeField] private float targetShakeScore = 100f;
 
+    [Header("Camera Control References")]
+    private MouseLook playerXLook;
+    private MouseLook cameraYLook;
+
     private Vector3 restingLocalPosition;
     private Vector3 lastLocalPosition;
     private bool isShakingActive = false;
     private float currentShakeScore = 0f;
-
-    private MouseLook playerMouseLook;
     private bool isGrabbed = false;
 
     void Start()
     {
         // Shaker defaults to zero offset relative to your child Grab Point
-        restingLocalPosition = transform.position;
+        restingLocalPosition = transform.localPosition;
         lastLocalPosition = restingLocalPosition;
+        
+        cameraYLook = GetComponentInParent<MouseLook>();
+        if (transform.root != null)
+        {
+            playerXLook = transform.root.GetComponent<MouseLook>();
+        }
+
+        if (cameraYLook == null || playerXLook == null)
+        {
+            Debug.LogWarning($"[CocktailShaker] Missing component links! Camera Look: {cameraYLook != null}, Player Look: {playerXLook != null}");
+        }
     }
     
     // Update is called once per frame
@@ -42,11 +55,11 @@ public class CocktailShaker : MonoBehaviour
             }
         }
 
-        // Try to bind your look script if we don't have it cached yet
-        if (playerMouseLook == null)
-        {
-            playerMouseLook = GetComponentInParent<MouseLook>();
-        }
+        // // Try to bind your look script if we don't have it cached yet
+        // if (playerMouseLook == null)
+        // {
+        //     playerMouseLook = GetComponentInParent<MouseLook>();
+        // }
 
         HandleShakingStateToggle();
 
@@ -67,10 +80,15 @@ public class CocktailShaker : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetButtonDown(actionButton))
         {
             isShakingActive = true;
-            if (playerMouseLook != null)
+            if (playerXLook != null)
             {
-                playerMouseLook.working = false; // Freeze camera look
+                playerXLook.working = false; 
             }
+            if (cameraYLook != null)
+            {
+                cameraYLook.working = false;
+            }
+            
         }
 
         // Stop Shaking
@@ -119,10 +137,15 @@ public class CocktailShaker : MonoBehaviour
     private void ForceStopShaking()
     {
         isShakingActive = false;
-        if (playerMouseLook != null)
-        {
-            playerMouseLook.working = true; // Safely restore camera controls
-        }
+
+        if (playerXLook != null)
+            {
+                playerXLook.working = true; 
+            }
+            if (cameraYLook != null)
+            {
+                cameraYLook.working = true;
+            }
     }
 
     private void OnDrinkFinishedShaking()
