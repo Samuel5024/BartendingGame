@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CocktailShaker : MonoBehaviour
@@ -21,6 +22,8 @@ public class CocktailShaker : MonoBehaviour
     private bool isShakingActive = false;
     private float currentShakeScore = 0f;
     private bool isGrabbed = false;
+    
+    private MouseLook playerMouseLook;
 
     void Start()
     {
@@ -61,11 +64,11 @@ public class CocktailShaker : MonoBehaviour
             }
         }
 
-        // // Try to bind your look script if we don't have it cached yet
-        // if (playerMouseLook == null)
-        // {
-        //     playerMouseLook = GetComponentInParent<MouseLook>();
-        // }
+        // Try to bind your look script if we don't have it cached yet
+        if (playerMouseLook == null)
+        {
+            playerMouseLook = GetComponentInParent<MouseLook>();
+        }
 
         HandleShakingStateToggle();
 
