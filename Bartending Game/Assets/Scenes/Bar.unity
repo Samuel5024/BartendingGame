@@ -1213,6 +1213,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1333020124}
     - target: {fileID: 474522996376255234, guid: a23581a4f2aa5674ea6434c1b2aa2d33, type: 3}
+      propertyPath: 'prompts.Array.data[0]'
+      value: Grab Cocktail Shaker
+      objectReference: {fileID: 0}
+    - target: {fileID: 474522996376255234, guid: a23581a4f2aa5674ea6434c1b2aa2d33, type: 3}
+      propertyPath: 'prompts.Array.data[1]'
+      value: Hold Left Shift or LMB to Shake
+      objectReference: {fileID: 0}
+    - target: {fileID: 474522996376255234, guid: a23581a4f2aa5674ea6434c1b2aa2d33, type: 3}
       propertyPath: 'mouseLook.Array.data[0]'
       value: 
       objectReference: {fileID: 5901071926514571059}

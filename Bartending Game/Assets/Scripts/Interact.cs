@@ -29,7 +29,6 @@ public class Interact : MonoBehaviour
         CrosshairUI.SetActive(true);
     }
 
-    // Update is called once per frame
     void Update()
     {
         fwd = transform.TransformDirection(Vector3.forward);
@@ -47,7 +46,6 @@ public class Interact : MonoBehaviour
                     dispText.text = message;
                     if (!alreadyHovered)
                     {
-                        // CrosshairUI.SetActive(true);
                         alreadyHovered2 = false;
                         alreadyHovered = true;
                     }
@@ -61,11 +59,15 @@ public class Interact : MonoBehaviour
                         hit.transform.SendMessage("Looking", SendMessageOptions.DontRequireReceiver);
                     }
                 }
+                else 
+                {
+                    dispText.text = "";
+                    hover = false;
+                }
             }
             else if (hit.transform.tag != "Interactable")
             {
-                // CrosshairUI.SetActive(false);
-
+                dispText.text = "";
                 hover = false;
                 alreadyHovered = false;
                 if (!alreadyHovered2)
@@ -83,7 +85,6 @@ public class Interact : MonoBehaviour
         {
             hover = false;
             dispText.text = "";
-            // CrosshairUI.SetActive(false);
             storedIntObj = null;
         }
     }
