@@ -27,16 +27,22 @@ public class CocktailShaker : MonoBehaviour
         // Shaker defaults to zero offset relative to your child Grab Point
         restingLocalPosition = transform.localPosition;
         lastLocalPosition = restingLocalPosition;
-        
-        cameraYLook = GetComponentInParent<MouseLook>();
-        if (transform.root != null)
+
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        if (playerObj != null)
         {
-            playerXLook = transform.root.GetComponent<MouseLook>();
+            playerXLook = playerObj.GetComponent<MouseLook>();
+        }
+
+        GameObject cameraObj = GameObject.FindWithTag("MainCamera");
+        if (cameraObj != null)
+        {
+            cameraYLook = cameraObj.GetComponent<MouseLook>();
         }
 
         if (cameraYLook == null || playerXLook == null)
         {
-            Debug.LogWarning($"[CocktailShaker] Missing component links! Camera Look: {cameraYLook != null}, Player Look: {playerXLook != null}");
+            Debug.LogWarning($"[CocktailShaker] Tag search failed! Player script found: {playerXLook != null}, Camera script found: {cameraYLook != null}");
         }
     }
     
