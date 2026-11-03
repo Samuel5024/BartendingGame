@@ -25,7 +25,7 @@ public class CocktailShaker : MonoBehaviour
     void Start()
     {
         // Shaker defaults to zero offset relative to your child Grab Point
-        restingLocalPosition = transform.localPosition;
+        //restingLocalPosition = transform.localPosition;
         lastLocalPosition = restingLocalPosition;
 
         GameObject playerObj = GameObject.FindWithTag("Player");
@@ -106,20 +106,22 @@ public class CocktailShaker : MonoBehaviour
 
     private void ProcessShakingInput()
     {
+        // (inp.gtaxis %n 10 ) + horizontal 
         // Read active inputs from the Input Manager
-        float moveX = Input.GetAxis("Mouse X") + Input.GetAxis("Horizontal");
-        float moveY = Input.GetAxis("Mouse Y") + Input.GetAxis("Vertical");
+        float moveX = (Input.GetAxis("Mouse X") %10) + Input.GetAxis("Horizontal");
+        float moveY = (Input.GetAxis("Mouse Y") %10) + Input.GetAxis("Vertical");
 
         Vector3 targetOffset = new Vector3(moveX, moveY, 0f) * movementSensitivity;
 
         // Apply spatial movement relative to the grab point child coordinate space
-        transform.localPosition = Vector3.Lerp(transform.localPosition, restingLocalPosition + targetOffset, Time.deltaTime * 25f);
+        transform.localPosition = Vector3.Lerp(transform.localPosition, lastLocalPosition + targetOffset, Time.deltaTime * 25f);
     }
 
     private void CalculateShakeVelocity()
     {
+   
         // Determine physical movement velocity inside local space
-        float frameVelocity = (transform.localPosition - lastLocalPosition).magnitude / Time.deltaTime;
+        float frameVelocity = ((transform.localPosition - lastLocalPosition).magnitude % 10) / Time.deltaTime;
         lastLocalPosition = transform.localPosition;
 
         if (frameVelocity > requiredVelocityThreshold)
@@ -136,7 +138,7 @@ public class CocktailShaker : MonoBehaviour
 
     private void ReturnToRestingPosition()
     {
-        transform.localPosition = Vector3.Lerp(transform.localPosition, restingLocalPosition, Time.deltaTime * returnSpeed);
+        transform.localPosition = Vector3.Lerp(transform.localPosition, lastLocalPosition, Time.deltaTime * returnSpeed);
         lastLocalPosition = transform.localPosition;
     }
 
