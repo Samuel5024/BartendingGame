@@ -103,6 +103,8 @@ public class GrabbableObject : MonoBehaviour
             {
                 rend.material.color = Color.Lerp(rend.material.color, originColor, Time.deltaTime * 4);
             }
+
+            ReturnToOrigin();
         }
         else
         {
@@ -147,26 +149,25 @@ public class GrabbableObject : MonoBehaviour
                 }
                 rotating = false;
             }
-        }
-        else
-        {
-            if (canReturn)
-            {
-                if (!objectReset)
-                {
-                    distToOrigin = Vector3.Distance(originPos, transform.position);
-                    if (distToOrigin <= .25f)
-                    {
-                        // Disable physics
-                        rb.isKinematic = true;
-                        transform.position = originPos;
-                        transform.rotation = originRot;
-                        rb.isKinematic = false;
-                        objectReset = true;
-                    }
-                }
-            }
         }    
+    }
+
+    private void ReturnToOrigin()
+    {
+        if (!canReturn || objectReset)
+        {
+            return;
+        }
+
+        distToOrigin = Vector3.Distance(originPos, transform.position);
+        if (distToOrigin <= 0.25f)
+        {
+            rb.isKinematic = true;
+            transform.position = originPos;
+            transform.rotation = originRot;
+            rb.isKinematic = false;
+            objectReset = true;
+        }
     }
 
     void OnTriggerEnter(Collider coll)
@@ -179,7 +180,7 @@ public class GrabbableObject : MonoBehaviour
 
     private IEnumerator Fadeout()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         over = false;
     }
 
