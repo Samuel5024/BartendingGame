@@ -22,8 +22,7 @@ public class CocktailShaker : MonoBehaviour
     private bool isShakingActive = false;
     private float currentShakeScore = 0f;
     private bool isGrabbed = false;
-    
-    private MouseLook playerMouseLook;
+    private Interact interact;
 
     void Start()
     {
@@ -35,17 +34,19 @@ public class CocktailShaker : MonoBehaviour
         if (playerObj != null)
         {
             playerXLook = playerObj.GetComponent<MouseLook>();
+            interact = playerObj.GetComponent<Interact>();
         }
 
         GameObject cameraObj = GameObject.FindWithTag("MainCamera");
         if (cameraObj != null)
         {
             cameraYLook = cameraObj.GetComponent<MouseLook>();
+            interact = cameraObj.GetComponent<Interact>();
         }
 
-        if (cameraYLook == null || playerXLook == null)
+        if (cameraYLook == null || playerXLook == null || interact == null)
         {
-            Debug.LogWarning($"[CocktailShaker] Tag search failed! Player script found: {playerXLook != null}, Camera script found: {cameraYLook != null}");
+            Debug.LogWarning($"[CocktailShaker] Setup warning! Player: {playerXLook != null}, Camera: {cameraYLook != null}, Interact: {interact != null}");
         }
     }
     
@@ -62,12 +63,6 @@ public class CocktailShaker : MonoBehaviour
             {
                 ForceStopShaking();
             }
-        }
-
-        // Try to bind your look script if we don't have it cached yet
-        if (playerMouseLook == null)
-        {
-            playerMouseLook = GetComponentInParent<MouseLook>();
         }
 
         HandleShakingStateToggle();
@@ -88,6 +83,11 @@ public class CocktailShaker : MonoBehaviour
         // Start Shaking
         if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetButtonDown(actionButton))
         {
+            if (interact != null)
+            {
+                interact.CrosshairUI.SetActive(false);
+            }
+            
             isShakingActive = true;
             if (playerXLook != null)
             {
@@ -96,8 +96,8 @@ public class CocktailShaker : MonoBehaviour
             if (cameraYLook != null)
             {
                 cameraYLook.working = false;
+                
             }
-            
         }
 
         // Stop Shaking
@@ -109,7 +109,6 @@ public class CocktailShaker : MonoBehaviour
 
     private void ProcessShakingInput()
     {
-        // (inp.gtaxis %n 10 ) + horizontal 
         // Read active inputs from the Input Manager
         float moveX = (Input.GetAxis("Mouse X") %10) + Input.GetAxis("Horizontal");
         float moveY = (Input.GetAxis("Mouse Y") %10) + Input.GetAxis("Vertical");
@@ -147,13 +146,17 @@ public class CocktailShaker : MonoBehaviour
 
     private void ForceStopShaking()
     {
+        if (interact != null && interact.CrosshairUI != null)
+        {
+            interact.CrosshairUI.SetActive(true);
+        }
         isShakingActive = false;
 
         if (playerXLook != null)
             {
                 playerXLook.working = true; 
             }
-            if (cameraYLook != null)
+        if (cameraYLook != null)
             {
                 cameraYLook.working = true;
             }
