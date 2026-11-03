@@ -26,6 +26,7 @@ public class Interact : MonoBehaviour
         anim = InteractionUI.GetComponent<Animation>();
         dispText = InteractionUI.GetComponent<TextMeshProUGUI>();
         dispText.text = "";
+        CrosshairUI.SetActive(true);
     }
 
     // Update is called once per frame
@@ -46,7 +47,7 @@ public class Interact : MonoBehaviour
                     dispText.text = message;
                     if (!alreadyHovered)
                     {
-                        CrosshairUI.SetActive(true);
+                        // CrosshairUI.SetActive(true);
                         alreadyHovered2 = false;
                         alreadyHovered = true;
                     }
@@ -63,7 +64,7 @@ public class Interact : MonoBehaviour
             }
             else if (hit.transform.tag != "Interactable")
             {
-                CrosshairUI.SetActive(false);
+                // CrosshairUI.SetActive(false);
 
                 hover = false;
                 alreadyHovered = false;
@@ -82,7 +83,7 @@ public class Interact : MonoBehaviour
         {
             hover = false;
             dispText.text = "";
-            CrosshairUI.SetActive(false);
+            // CrosshairUI.SetActive(false);
             storedIntObj = null;
         }
     }

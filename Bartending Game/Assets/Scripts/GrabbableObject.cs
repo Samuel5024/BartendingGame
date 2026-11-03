@@ -71,7 +71,7 @@ public class GrabbableObject : MonoBehaviour
             objectReset = false;
         }
         interactable.message = prompts[1];
-        interactable.CrosshairUI.SetActive(false);
+        interactable.CrosshairUI.SetActive(true);
     }
 
     public void RelativeRotate(float rotateLeftRight, float rotateUpDown)
