@@ -4,18 +4,26 @@ public class MusicAmbience : MonoBehaviour
 {
     public double musicDuration;
     public double goalTime;
-
+    public AudioSource[] _audioSources;
+    public int audioToggle;
     public AudioClip currentClip;
-    public AudioSource audioSource;
-
-    private void OnPlayMusic()
+    
+    private void Update()
     {
-        goalTime = AudioSettings.dspTime + 0.5;
+        if (AudioSettings.dspTime > goalTime - 1)
+        {
+            PlayScheduledClip();
+        }
+    }
 
-        audioSource.clip = currentClip;
-        audioSource.PlayScheduled(goalTime);
-
+    private void PlayScheduledClip()
+    {
+        _audioSources[audioToggle].clip = currentClip;
+        _audioSources[audioToggle].PlayScheduled(goalTime);
+        
         musicDuration = (double)currentClip.samples / currentClip.frequency;
         goalTime = goalTime + musicDuration;
+        
+        audioToggle = 1 - audioToggle;
     }
 }
