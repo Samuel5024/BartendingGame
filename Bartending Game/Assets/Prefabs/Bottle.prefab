@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 925652544648832468}
   - component: {fileID: 12633852556225306}
   - component: {fileID: 474522996376255234}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bottle
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5dd8d24f347558144a074484ecc3b2f7, type: 2}
+  - {fileID: 2100000, guid: e71a7d1bff5eb8b49bc2c719ec3ac326, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -135,7 +135,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &474522996376255234
 MonoBehaviour:
