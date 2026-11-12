@@ -23,6 +23,7 @@ public class CocktailShaker : MonoBehaviour
     private float currentShakeScore = 0f;
     private bool isGrabbed = false;
     private Interact interact;
+    private GameManager gameManager;
 
     void Start()
     {
@@ -43,6 +44,8 @@ public class CocktailShaker : MonoBehaviour
             cameraYLook = cameraObj.GetComponent<MouseLook>();
             interact = cameraObj.GetComponent<Interact>();
         }
+
+        gameManager = FindObjectOfType<GameManager>();
 
         if (cameraYLook == null || playerXLook == null || interact == null)
         {
@@ -81,7 +84,7 @@ public class CocktailShaker : MonoBehaviour
     private void HandleShakingStateToggle()
     {
         // Start Shaking
-        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetButtonDown(actionButton))
+        if (Input.GetKeyDown(KeyCode.Mouse1) || Input.GetButtonDown(actionButton))
         {
             if (interact != null)
             {
@@ -101,7 +104,7 @@ public class CocktailShaker : MonoBehaviour
         }
 
         // Stop Shaking
-        if (Input.GetKeyUp(KeyCode.Mouse0) || Input.GetButtonUp(actionButton))
+        if (Input.GetKeyUp(KeyCode.Mouse1) || Input.GetButtonUp(actionButton))
         {
             ForceStopShaking();
         }
@@ -167,8 +170,11 @@ public class CocktailShaker : MonoBehaviour
         Debug.Log("Drink is ready!");
         ForceStopShaking();
         currentShakeScore = 0f;
-        // Additional logic for when the drink is finished can be added here
+        
+        if (gameManager != null)
+        {
+            gameManager.FinishLevel();
+        }
+
     }
-
-
 }
