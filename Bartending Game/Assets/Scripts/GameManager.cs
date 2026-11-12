@@ -3,10 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    bool levelCompleted = false;
+    // bool levelCompleted = false;
+    public GameObject completeLevelUI;
     
     public void FinishLevel()
     {
-        Debug.Log("Level Completed!");
+        completeLevelUI.SetActive(true);
     }
 }

@@ -1189,7 +1189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 197151919}
   m_Layer: 0
-  m_Name: Win Screen
+  m_Name: Level Complete
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12366,6 +12366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c92d106c06c670b4ebf87ac557e10219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  completeLevelUI: {fileID: 197151918}
 --- !u!1001 &2135478623
 PrefabInstance:
   m_ObjectHideFlags: 0
