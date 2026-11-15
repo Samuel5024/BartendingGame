@@ -3625,18 +3625,6 @@ PrefabInstance:
       value: Round Large Table
       objectReference: {fileID: 0}
     - target: {fileID: 905161015592706176, guid: fc0c4c41abf2fb94aa320ac383543a78, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.3117039
-      objectReference: {fileID: 0}
-    - target: {fileID: 905161015592706176, guid: fc0c4c41abf2fb94aa320ac383543a78, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.5808655
-      objectReference: {fileID: 0}
-    - target: {fileID: 905161015592706176, guid: fc0c4c41abf2fb94aa320ac383543a78, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.3117039
-      objectReference: {fileID: 0}
-    - target: {fileID: 905161015592706176, guid: fc0c4c41abf2fb94aa320ac383543a78, type: 3}
       propertyPath: m_LocalPosition.x
       value: 19.54
       objectReference: {fileID: 0}
@@ -3676,10 +3664,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2073041185105026031, guid: fc0c4c41abf2fb94aa320ac383543a78, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 906a660d49447404b80d62856eb5dba0, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7759,18 +7743,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 131661237}
     m_Modifications:
     - target: {fileID: 7154349420548611306, guid: 424b1bea717b1694087651edb3cd8886, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.7039728
-      objectReference: {fileID: 0}
-    - target: {fileID: 7154349420548611306, guid: 424b1bea717b1694087651edb3cd8886, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.4984969
-      objectReference: {fileID: 0}
-    - target: {fileID: 7154349420548611306, guid: 424b1bea717b1694087651edb3cd8886, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.5753102
-      objectReference: {fileID: 0}
-    - target: {fileID: 7154349420548611306, guid: 424b1bea717b1694087651edb3cd8886, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.72716427
       objectReference: {fileID: 0}
@@ -7814,10 +7786,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dining Table
       objectReference: {fileID: 0}
-    - target: {fileID: 8287316247990609797, guid: 424b1bea717b1694087651edb3cd8886, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 906a660d49447404b80d62856eb5dba0, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10094,18 +10062,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 1199512549}
     m_Modifications:
     - target: {fileID: 7356655301141663965, guid: 6295a3cf6fabb5c4fa01adf7f69bd556, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.4465606
-      objectReference: {fileID: 0}
-    - target: {fileID: 7356655301141663965, guid: 6295a3cf6fabb5c4fa01adf7f69bd556, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.4465606
-      objectReference: {fileID: 0}
-    - target: {fileID: 7356655301141663965, guid: 6295a3cf6fabb5c4fa01adf7f69bd556, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.4465606
-      objectReference: {fileID: 0}
-    - target: {fileID: 7356655301141663965, guid: 6295a3cf6fabb5c4fa01adf7f69bd556, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.81
       objectReference: {fileID: 0}
@@ -10149,10 +10105,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Backing Chair (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 8526224319709506482, guid: 6295a3cf6fabb5c4fa01adf7f69bd556, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 894d3d51812235c4996c9fe410720a90, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
